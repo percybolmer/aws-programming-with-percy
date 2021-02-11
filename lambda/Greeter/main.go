@@ -19,9 +19,9 @@ var latestID int
 
 // User is a simple struct to accept as input
 type User struct {
-	Name    string `json:"name"`
-	SirName string `json:"sirname"`
-	ID      int    `json:"ID"`
+	Name     string `json:"name"`
+	LastName string `json:"lastname"`
+	ID       int    `json:"ID"`
 }
 
 // Greetings is the response to a user entering
@@ -31,7 +31,7 @@ type Greetings struct {
 
 // String implements the stringer interface for user
 func (u User) String() string {
-	return fmt.Sprintf("Welcome %s %s", u.Name, u.SirName)
+	return fmt.Sprintf("Welcome %s %s", u.Name, u.LastName)
 }
 
 // GreetVisitor is a lambda function that will greet a visitor
