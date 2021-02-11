@@ -51,7 +51,9 @@
             .then(response => response.text())
             .then(function(data) {
                 let textarea = document.getElementById('greets')
-                textarea.value = JSON.parse(data) + "\n" + textarea.value;
+                console.log(data);
+
+                textarea.value = JSON.parse(data).greet + "\n" + textarea.value;
             })
             //.then(result => document.getElementById('greets').value(JSON.parse(result).body))
             .catch(error => console.log('error', error));
