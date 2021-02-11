@@ -11,16 +11,18 @@
         }
     h2 {
         color: #FF9900;
-        margin: 20px 20px 20px 20px;
+        margin: 20px 20px 20px 150px
     }
     textarea {
         margin: 20px 20px 20px 20px;
+        width:60%;
+        height:200px;
     }
     label, button {
         color: #FF9900;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 20px;
-        margin-left: 40px;
+        margin-left: 20px;
         }
      input {
         color: #232F3E;
@@ -31,14 +33,14 @@
     </style>
 
     <script>
-        // define the callAPI function that takes a first name and last name as parameters
-        var callAPI = (firstName,lastName)=>{
+        // define the greetUserAPI function that takes a first name and last name as parameters
+        var greetUserAPI = (firstName,lastName)=>{
             // instantiate a headers object
             var myHeaders = new Headers();
             // add content type header to object
             myHeaders.append("Content-Type", "application/json");
             // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"name":firstName,"sirname":lastName});
+            var raw = JSON.stringify({"name":firstName,"lastname":lastName});
             // create a JSON object with parameters for API call and store in a variable
             var requestOptions = {
                 method: 'POST',
@@ -51,11 +53,8 @@
             .then(response => response.text())
             .then(function(data) {
                 let textarea = document.getElementById('greets')
-                console.log(data);
-
                 textarea.value = JSON.parse(data).greet + "\n" + textarea.value;
             })
-            //.then(result => document.getElementById('greets').value(JSON.parse(result).body))
             .catch(error => console.log('error', error));
         }
     </script>
@@ -66,11 +65,11 @@
     <h2> Hello, your using AWS Amplify to host this via a GitHub Repo! </h2>
     <form>
         <label>First Name :</label>
-        <input type="text" id="fName">
-        <label>Last Name :</label>
-        <input type="text" id="lName">
+        <input type="text" id="firstName">
+        <label>Sir Name :</label>
+        <input type="text" id="lastName">
         <!-- set button onClick method to call function we defined passing input values as parameters -->
-        <button type="button" onclick="callAPI(document.getElementById('fName').value,document.getElementById('lName').value)">Call API</button>
+        <button type="button" onclick="greetUserAPI(document.getElementById('firstName').value,document.getElementById('lastName').value)">Call API</button>
     </form>
 
     <textarea name="greets" id="greets" rows="4" cols="50" placeholder="Greetings will be displayed here">
