@@ -49,7 +49,11 @@
             // make API call with parameters and use promises to get response
             fetch("https://m9xoypuff2.execute-api.eu-north-1.amazonaws.com/development", requestOptions)
             .then(response => response.text())
-            .then(result => document.getElementById('greets').value(JSON.parse(result).body))
+            .then(function(data) {
+                let textarea = document.getElementById('greets')
+                textarea.value = JSON.parse(data) + "\n" + textarea.value;
+            })
+            //.then(result => document.getElementById('greets').value(JSON.parse(result).body))
             .catch(error => console.log('error', error));
         }
     </script>
